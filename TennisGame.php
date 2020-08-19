@@ -10,13 +10,12 @@ class TennisGame
 {
     public $score = '';
 
-    public function getScore($player1Name, $player2Name, $m_score1, $m_score2)
+    public function getScore($player1Name, $player2Name, $scorePlayer1, $scorePlayer2)
     {
-        $tempScore=0;
+        $tempScore = 0;
 
-        if ($m_score1==$m_score2) {
-            switch ($m_score1)
-            {
+        if ($scorePlayer1 == $scorePlayer2) {
+            switch ($scorePlayer1) {
                 case 0:
                     $this->score = "Love-All";
                     break;
@@ -34,34 +33,31 @@ class TennisGame
                     break;
 
             }
-        }
-        else if ($m_score1>=4 || $m_score2>=4)
-        {
-            $minusResult = $m_score1-$m_score2;
-            if ($minusResult==1) $this->score ="Advantage player1";
-            else if ($minusResult ==-1) $this->score ="Advantage player2";
-            else if ($minusResult>=2) $this->score = "Win for player1";
-            else $this->score ="Win for player2";
-        }
-        else
-        {
-            for ($i=1; $i<3; $i++)
-            {
-                if ($i==1) $tempScore = $m_score1;
-                else { $this->score.="-"; $tempScore = $m_score2;}
-                switch($tempScore)
-                {
+        } else if ($scorePlayer1 >= 4 || $scorePlayer1 >= 4) {
+            $minusResult = $scorePlayer1 - $scorePlayer2;
+            if ($minusResult == 1) $this->score = "Advantage player1";
+            else if ($minusResult == -1) $this->score = "Advantage player2";
+            else if ($minusResult >= 2) $this->score = "Win for player1";
+            else $this->score = "Win for player2";
+        } else {
+            for ($i = 1; $i < 3; $i++) {
+                if ($i == 1) $tempScore = $scorePlayer1;
+                else {
+                    $this->score .= "-";
+                    $tempScore = $scorePlayer2;
+                }
+                switch ($tempScore) {
                     case 0:
-                        $this->score.="Love";
+                        $this->score .= "Love";
                         break;
                     case 1:
-                        $this->score.="Fifteen";
+                        $this->score .= "Fifteen";
                         break;
                     case 2:
-                        $this->score.="Thirty";
+                        $this->score .= "Thirty";
                         break;
                     case 3:
-                        $this->score.="Forty";
+                        $this->score .= "Forty";
                         break;
                 }
             }
